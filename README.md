@@ -1,4 +1,4 @@
-#### 2Do List
+## 2Do List
 By: Jazz Faye Olario
 
 ## Add New List
