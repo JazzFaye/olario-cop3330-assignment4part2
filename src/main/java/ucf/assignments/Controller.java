@@ -30,7 +30,7 @@ public class Controller{
     @FXML
     private ListView<TodoList> todoListView;
     @FXML
-    private TextArea itemDetailTextArea;
+    private TextArea DescriptionTextArea;
     @FXML
     private Label DateAndStatus;
     @FXML
@@ -152,7 +152,7 @@ public class Controller{
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             Data.getInstance().deleteTodoItem(item);
-            itemDetailTextArea.clear();
+            DescriptionTextArea.clear();
             todoListView.refresh();
         }
     }
@@ -209,11 +209,11 @@ public class Controller{
             public void changed(ObservableValue<? extends TodoList> observable, TodoList oldValue, TodoList newValue) {
                 if (newValue != null) {
                     TodoList item = todoListView.getSelectionModel().getSelectedItem();
-                    itemDetailTextArea.setText(item.getDescription());
+                    DescriptionTextArea.setText(item.getDescription());
                     DateTimeFormatter df = DateTimeFormatter.ofPattern("MMMM dd, yyyy");
                     DateAndStatus.setText("\t\t\t\tDue: " + df.format(item.getDue_Date()) + "\tStatus: " + (item.getComplete()));
                 }else{
-                    itemDetailTextArea.setText("");
+                    DescriptionTextArea.setText("");
                     DateAndStatus.setText("\t\t\t\tDue: " + "\tStatus: ");
                 }
             }
@@ -260,7 +260,7 @@ public class Controller{
         if (Filter_List.isSelected()) {
             Filtered_List.setPredicate(IncompleteList);
             if (Filtered_List.isEmpty()) {
-                itemDetailTextArea.clear();
+                DescriptionTextArea.clear();
                 DateAndStatus.setText("");
             } else if (Filtered_List.contains(selectedItem)) {
                 todoListView.getSelectionModel().select(selectedItem);

@@ -98,7 +98,7 @@
                <Font name="Arial Bold" size="14.0" />
             </font>
          </Label>
-            <TextArea fx:id="itemDetailTextArea" editable="false" prefHeight="0.0" prefWidth="466.0" style="-fx-font-size: 14" wrapText="true" VBox.vgrow="ALWAYS">
+            <TextArea fx:id="DescriptionTextArea" editable="false" prefHeight="0.0" prefWidth="466.0" style="-fx-font-size: 14" wrapText="true" VBox.vgrow="ALWAYS">
             <VBox.margin>
                <Insets bottom="20.0" left="50.0" right="30.0" top="20.0" />
             </VBox.margin>

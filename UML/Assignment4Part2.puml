@@ -10,14 +10,14 @@ __
 Class TodoList{
 - complete : String
 - Due_Date : LocalDate
-- details : String
+- description : String
 - title : String
 ----
 + TodoList (title: String, details : String, Due_Date: LocalDate, complete: String)
 + getTitle() : String
 + setTitle(title : String) : void
-+ getDetails() : String
-+ setDetails(details : String) : void
++ getDescription() : String
++ setDescription(details : String) : void
 + getDue_Date() : LocalDate
 + setDue_Date(due_date: LocalDate): void
 + getComplete() : String
@@ -48,7 +48,6 @@ Class Controller{
 - AllItems : Predicate<TodoList>
 - All Items : Predicate<TodoList>
 - Filtered_List : FilteredList<TodoList>
-- deleteall : Button
 - Filter_List : ToggleButton
 - Edit_List: Button
 - Delete_List : Button
