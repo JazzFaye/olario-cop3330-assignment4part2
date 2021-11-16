@@ -17,9 +17,9 @@ To Edit a list you can either do the following:
 2. Click the "Pencil" Icon. Make sure to you click the list you want to delete first.
      
 ## Filtering an Item
-To Show only the Completed items. Click the "Funnel" Icon. 
-To Show only the Incompleted items. Click the "Funnel" Icon.
-To Show All items. Click the "Show All" Button.
+* To Show only the Completed items. Click the "Funnel" Icon. 
+* To Show only the Incompleted items. Click the "Funnel" Icon.
+* To Show All items. Click the "Show All" Button.
   
 Note: 
 * Completed Items = Green
