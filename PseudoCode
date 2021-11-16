@@ -1,0 +1,338 @@
+Class (JavaFxApplication) App
+
+    method main()
+        launch the "main" fxml file
+    end of method
+
+    method start()
+        locates the fxml file
+        shows the stage in order to make the fxml file visible
+    end of method
+
+end of class App
+
+Class TodoList
+
+    Declare necessary variables to hold information of the item
+
+    Generate Getter and Setter for the variables()
+        this.(object) method to take the user input and place it into the variable in the constructor
+    end of method
+
+End of Class TodoList
+
+Class Data
+
+    Set up File Name to pass the user input and change it into txt file
+    Declare ObservableList to changes on TodoList last when they occur
+    Declare DateTimeFormatter
+
+    method Data()
+
+        DateTimeFormatter.ofPattern(month, day, year)
+
+    end of method
+
+    method addTodoItem()
+
+        Add necessary user input the txt file;
+
+    end of method
+
+    method deleteTodoItem()
+
+        Delete todolistItems from the txt file;
+
+    end of method
+
+    method updateTodoItem()
+
+        update todolisItems on the text file;
+
+    end of method
+
+    method loadTodoItems()
+
+        String input
+        Declare file path to load file
+        Declare BufferedReader count the number of each lines that are within the file
+        while loop(there are lines in the file with information)
+           initialize array statement
+           Parse Due_Date to String
+        end of loop
+
+    end of method
+
+    method saveTodoItems()
+
+        get file path
+        Declare BufferedWriter to write the items and their components to the txt file
+        for loop (to write every single line inputted by the user)
+            write the file and separate them with "\t"
+            get the list information inputted by the user
+            Format the Due_Date
+        end of loop
+
+    end of method
+
+}End of Class Data
+
+Class Controller()
+
+    Copy Scenebuilder Sample Skeleton Controller Class to add necessary buttons/functions/actions for the FXML
+    Declare FilteredList to filter listview to all, incomplete, complete
+    Declare Predicates to match certain elements and show in the Filtered List
+    Declare SortedList to sort list based on Status
+    Declare setcellfactory to define each cell of the List View
+        getTextTitle from the user
+            Red = Incomplete List
+            Forest Green = Complete List
+
+    method AddNewList() {
+         When user click new or the add Icon "AddNewList" fxml file will appear
+         Get the "AddNewListController"
+         setting title as "Add New Todo Item"
+            try{
+                load fxml file
+            }
+            catch{
+                error message will appear "Dialog could not load."
+            }
+        Declare dialog buttons "Ok" and "Cancel"
+        Wait for the user response before passing the info to the "main" fxml file
+            if(the user clicks "Ok"){
+                Get user input
+                    if(user does not input title and description){
+                        Show Error Message "Title and Description cannot be empty."
+                    }
+                    else{
+                        pass user input to the "main" fxml file
+                    }
+                    end of if - else statement
+
+            }
+            end of if statement
+    }
+
+    end of method
+
+    Method ContextMenu() {
+        Declare new Context Menu within a list
+        Declare Context Menus ("Delete", "Edit")
+
+        Set Action if User decides to DELETE a list{
+            call method Delete_Item to show Alert and confirm user decision
+        }
+        Set Action is User decides to EDIT a list{
+            call method EditList to allow user to edit a list
+        }
+        get the items of the Context Menus so it will show up
+    }
+
+    end of method
+
+    method Delete_Item(){
+
+        Declare Alert and Alert Type (CONFIRMATION)
+        set title
+        setHeaderText("Are you sure?")
+        Wait for user response before proceeding
+        if (list exists and user clicks "OK"){
+            delete to do item
+            clear the text area
+            refresh the todolistview
+        }
+        end of if statement
+    }
+
+    end of method
+
+    method EditList(){
+
+        When user click "Edit" from the Context Menu or Icon on the ToolBar above the "EditList" fxml will load
+        Set Dialog Title
+        set path for the fxml file
+        try{
+            load the fxml file
+        }
+        catch{
+            Show error "Dialog Could not load."
+        }
+        get the "EditListController" for the fxml file
+        setfield olditems
+        Declare dialog buttons "Ok" and "Cancel"
+        Wait for user response
+            if(user input the new update and clicks "Ok"){
+                change the necessary input from olditem to updatedItem
+            }
+            end of if statement
+    }
+
+    end of method
+
+    method Setup_EachButton()
+
+        Set action if user click Delete_List Button
+        Allow user to select from the todoListView
+            if(User did not select a list from the listview){
+                Show Error Message
+            }
+            else {
+               Call method Delete_List to confirm and delete list
+            }
+            end of if else statement
+
+        Set action if user click Edit_List Button
+        Allow user to select from the todoListView
+            if(User did not select a list from the listview){
+                Show Error Message
+            }
+            else{
+                Call method EditList to edit
+            }
+            end of if else statement
+
+    end of method
+
+    Method Setup_FullView(){
+
+        User will select a List from the listview
+        if(User selects a list and it is not empty){
+            In the description Area = get details from the user
+            getdate and format date (Month Date, Year)
+            Set Label DateANDStatus (Due Date: get date from the user + Status: get status from the user)
+        }
+        else{
+            Set blank text in the description aread
+            Set black text in the label DateANDStatus
+        }
+    }
+
+    end of method
+
+    method Setup_Predicates(){
+           Call AllItems Predicate{
+            @Override
+                method boolean test(){
+                    return true;
+                }
+                end of method
+            }
+            end of method
+            Call Predicate IncompleteList and get list that has status "Incomplete"
+            Call Predicate CompleteList and get list that has status "Complete"
+    }
+
+    end of method
+
+    method Error(){
+        Declare Alert and Alert Type(ERROR)
+        set title
+        set header text
+        set Context text
+        show the alert
+    }
+
+    end of method
+
+    method Close(){
+        Closes the application if the user clicks "Exit" from the Menubar
+    }
+
+    end of method
+
+    method Filter_List_Pressed(){
+        if(Filter_List is Pressed){
+            Show only Incomplete List at the ListView
+            if(Filtered_List is Empty){
+                Clear the text area
+                Set Label DateAndStatus blank
+            }
+            else if(Filtered_List is not empty){
+                    User will click an Item Show its description, Date and Status of that item
+            }
+            end of if else method
+        }
+        else{
+            Show only Completed Items
+            User will click an Item and show its description, Date and Status of that item
+        }
+        end of if else method
+    }
+
+    end of method
+
+    method Show_All_Pressed(){
+        if user will press the "Show All" Button it will show all the items on the listview
+        user will click an item and show its description, Date and Status of that item
+    }
+
+    end of method
+
+} end of Class Controller
+
+Class AddListController implements Initializable{
+
+    Copy Scenebuilder Sample Skeleton Controller Class to add necessary buttons/functions/actions for the "AddNewList" FXML
+
+    @Override
+        method initialize(){
+            Set Value for Date Picker
+            Add Items in the ComboBox("Complete", "Incomplete")
+        }
+
+    method TodoList processResult(){
+            Get title, description, Due Date and Status from the user
+
+            if (title and description is empty){
+                return null
+            }
+            else{
+                pass information to the "main" fxml file
+                pass information the the txt file
+            }
+            end of if else statement
+    } End of method
+
+} End of Class AddListController
+
+Class EditListController implements Initializable{
+
+    Copy Scenebuilder Sample Skeleton Controller Class to add necessary buttons/functions/actions for the "EditList" FXML
+
+      @Override
+            method initialize(){
+                Set Value for Date Picker
+                Add Items in the ComboBox("Complete", "Incomplete")
+            }
+
+      method setFields(){
+        Set title, description, Due Date and Status input previously from the user
+      }
+      End of method
+
+      method UpdateTodoItem(){
+        User will update the necessary information to be updated
+        return new updated todolist
+      }
+      End of method
+
+      method updateItem(){
+         Call Class Data.method getInstance().method updateTodoItem() to update the txt file whenever the user updates a list
+      }
+} End of Class EditController
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

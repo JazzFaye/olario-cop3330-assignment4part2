@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="mainBorderPane" prefHeight="439.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.Controller">
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="File">
+                    <MenuItem mnemonicParsing="false" onAction="#AddNewList" text="New .." />
+                    <SeparatorMenuItem />
+                    <MenuItem mnemonicParsing="false" onAction="#Close" text="Exit" />
+                </Menu>
+            </MenuBar>
+         <ToolBar prefHeight="12.0" prefWidth="799.0" style="-fx-background-color: white; -fx-border-color: #c2c2c2;">
+            <items>
+                    <Button onAction="#AddNewList" prefHeight="31.0" prefWidth="14.0" style="-fx-background-color: white;">
+                        <tooltip>
+                            <Tooltip text="Add a New Todo Item." />
+                        </tooltip>
+                  <graphic>
+                     <ImageView fitHeight="23.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../Icons/add.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+                    </Button>
+                    <Button fx:id="Delete_List" style="-fx-background-color: whitw;">
+                        <tooltip>
+                            <Tooltip text="Delete the selected Todo Item." />
+                        </tooltip>
+                  <graphic>
+                     <ImageView fitHeight="23.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../Icons/trash.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+                    </Button>
+                    <Button fx:id="Edit_List" style="-fx-background-color: white;">
+                        <tooltip>
+                            <Tooltip text="Edit the selected Todo Item." />
+                        </tooltip>
+                  <graphic>
+                     <ImageView fitHeight="23.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../Icons/edit.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+                    </Button>
+                    <ToggleButton fx:id="Filter_List" onAction="#Filter_List_Pressed" prefHeight="23.0" prefWidth="28.0" style="-fx-pref-height: 32px; -fx-background-color: white;">
+                        <tooltip>
+                            <Tooltip text="Button Down: Show Incomplete Items Only. Button Up: Show all Items." />
+                        </tooltip>
+                  <graphic>
+                     <ImageView fitHeight="23.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../Icons/filter.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+                    </ToggleButton>
+               <Button fx:id="ShowAll" mnemonicParsing="false" onAction="#Show_All_Pressed" text="Show All">
+                  <tooltip>
+                     <Tooltip text="Show All Items" />
+                  </tooltip>
+               </Button>
+            </items>
+         </ToolBar>
+        </VBox>
+    </top>
+    <center>
+        <VBox style="-fx-background-color: white">
+         <Label text="Description: ">
+            <VBox.margin>
+               <Insets left="20.0" top="20.0" />
+            </VBox.margin>
+            <font>
+               <Font name="Arial Bold" size="14.0" />
+            </font>
+         </Label>
+            <TextArea fx:id="itemDetailTextArea" editable="false" prefHeight="0.0" prefWidth="466.0" style="-fx-font-size: 14" wrapText="true" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+               <Insets bottom="20.0" left="50.0" right="30.0" top="20.0" />
+            </VBox.margin>
+         </TextArea>
+            <HBox prefHeight="46.0" prefWidth="612.0" spacing="5">
+                <padding>
+                    <Insets left="5" />
+                </padding>
+                <Label fx:id="DateAndStatus" prefHeight="45.0" prefWidth="592.0">
+                    <font>
+                        <Font name="Arial Bold" size="15.0" />
+                    </font>
+                </Label>
+            </HBox>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+        </VBox>
+    </center>
+   <left>
+      <ListView fx:id="todoListView" onKeyPressed="#Handle_Key" prefHeight="306.0" prefWidth="202.0" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>

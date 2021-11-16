@@ -1,0 +1,119 @@
+@startuml
+Class App{
++ {static} main(args : String []) : void
+__
++ start(stage : Stage) : void
++ stop() : void
++ init () : void
+}
+
+Class TodoList{
+- complete : String
+- Due_Date : LocalDate
+- details : String
+- title : String
+----
++ TodoList (title: String, details : String, Due_Date: LocalDate, complete: String)
++ getTitle() : String
++ setTitle(title : String) : void
++ getDetails() : String
++ setDetails(details : String) : void
++ getDue_Date() : LocalDate
++ setDue_Date(due_date: LocalDate): void
++ getComplete() : String
++ setComplete() : (complete: String) : void
++ toString() : String
+}
+
+Class Data{
+- Data_Format : DateTimeFormatter {readOnly}
+- todoLists : ObservableList<TodoList>
+- {static} File Name : String {readOnly}
+- {static} instance : Data {readOnly}
+--
++ {static} getInstance() : Data
+- Data()
++ getTodoItems() ObservableList<TodoList>
++ addTodoItem(item : TodoList) : void
++ deleteTodoItem(item : TodoList): void
++ DeleteAllItems(item : TodoList): void
++ updateTodoItem(oldItem: TodoList, updatedItem: TodoList) : void
++ loadTodoItems() : void
++ saveTodoItems() : void
+}
+
+Class Controller{
+- CompleteList : Predicate<TodoList>
+- IncompleteList : Predicate<TodoList>
+- AllItems : Predicate<TodoList>
+- All Items : Predicate<TodoList>
+- Filtered_List : FilteredList<TodoList>
+- deleteall : Button
+- Filter_List : ToggleButton
+- Edit_List: Button
+- Delete_List : Button
+- listContextMenu : ContextMenu
+- mainBorderPane : BorderPane
+- DateAndStatus : Label
+- itemDetailTextArea : TextArea
+- todoListView : ListView<TodoList>
+--
++ initialize() : void
+- ContextMenu() : void
+- Setup_EachButton() : void
+- Setup_FullView () : void
+- Setup_Predicates() : void
++ AddNewList() : void
++ EditList (oldItem : TodoList) : void
++ Delete_Item(item: TodoList) : void
++ Error(error : String, message: String) : void
++ Close() : void
++ Handle_Key(keyEvent : KeyEvent) : void
++ Filter_List_Pressed(): void
++ Show_All_Pressed() : void
+
+}
+
+Class AddListController{
+- Status : Combo<String>
+- Due_Date : DatePicker
+- Description : TextArea
+- Title : TextField
+--
++ initialize (url : URL, resourceBundle : ResourceBundle) : void
++ processResult () : TodoList
+}
+
+Class EditListController{
+- Status : ComboBox<String>
+- Due_Date : DatePicker
+- Description : TextArea
+- Title : TextField
+--
++ initialize(location : URL, resources: ResourceBundle) : void
++ setFields(item : TodoList) : void
++ UpdateTodoItem(): TodoList
++ updateItem(oldItem : TodoList, updatedItem : TodoList) : void
+}
+
+javafx.application.Application <|- App
+java.time.format.DateTimeFormatter --* Data
+javafx.scene.control.ToggleButton --* Controller
+javafx.scene.control.ContextMenu --* Controller
+javafx.scene.control.DataPicker --* AddListController
+javafx.scene.control.DataPicker --* Edit_List
+javafx.scene.control.TextField --* AddListController
+javafx.scene.control.TextField --* EditListController
+javafx.scene.control.BorderPane --* Controller
+javafx.scene.control.TextArea --* Controller
+javafx.scene.control.TextArea --* AddListController
+javafx.scene.control.TextArea --* EditListController
+javafx.scene.control.Button --* Controller
+javafx.scene.control.Label --* Controller
+javafx.fxml.Initializable <|.. AddListController
+javafx.fxml.Initializable <|.. EditListController
+java.time.LocalDate --* TodoList
+java.lang.String --* TodoList
+java.lang.String --*Data
+
+@enduml
