@@ -2,12 +2,12 @@
 By: Jazz Faye Olario
 
 ## Add New List
-  To add New List you can either do the following:
-     1. Click File and Then "New."
-     2. Click The "+" Icon At the Top.
+To add New List you can either do the following:
+1. Click File and Then "New."
+2. Click The "+" Icon At the Top.
  
 ## Delete List
-  To delete a list you can either do the following:
+To delete a list you can either do the following:
      1. Right Click on the list you want to delete and Click "Delete."
      2. Click the "Trash" Icon. Make sure to click the list you want to delete first.
 
