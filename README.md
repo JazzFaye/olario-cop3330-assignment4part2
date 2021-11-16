@@ -5,6 +5,8 @@ By: Jazz Faye Olario
 To add New List you can either do the following:
 1. Click File and Then "New."
 2. Click The "+" Icon At the Top.
+
+Note: After adding a list "Always" Click "Show All" Button.
  
 ## Delete List
 To delete a list you can either do the following:
