@@ -1,6 +1,9 @@
 ## 2Do List
 By: Jazz Faye Olario
 
+Note: I made the Pseudocode as a text file. It should be under the name "PseudoCode."
+
+
 ## Add New List
 To add New List you can either do the following:
 1. Click File and Then "New."
